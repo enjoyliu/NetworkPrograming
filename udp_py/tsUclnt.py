@@ -10,13 +10,13 @@ ADDR = (HOST, PORT)
 udpCliSock = socket(AF_INET, SOCK_DGRAM)
 
 while True:
-    data = raw_input('> ')
+    data = input('> ')
     if not data:
         break
     udpCliSock.sendto(data, ADDR)
     data, ADDR = udpCliSock.recvfrom(BUFSIZ)
     if not data:
         break
-    print data
+    print (data.decode('utf-8'))
 
 udpCliSock.close()
