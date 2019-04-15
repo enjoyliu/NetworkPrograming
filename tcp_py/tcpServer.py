@@ -28,6 +28,6 @@ while True:
             break
         #tcpCliSock.send('[%s] %s' % (bytes(ctime(), 'utf-8'), data))
         tcpCliSock.send(bytes('[%s] %s' % (ctime(), data.decode('utf-8')), 'utf-8'))
-        print(bytes('[%s] %s' % (ctime(), data.decode('utf-8')), 'utf-8'))
+
     tcpCliSock.close()
 tcpSerSock.close()

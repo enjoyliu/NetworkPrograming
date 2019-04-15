@@ -1,9 +1,18 @@
 #!/usr/bin/env python
 
 from socket import *
+import argparse
 
-HOST = '35.201.215.176'
-PORT = 21567
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--host',metavar='', default='35.201.215.176',dest="host")
+
+parser.add_argument('--port',metavar='', default='21567',type = int, dest="port")
+
+args = parser.parse_args()
+
+HOST = args.host
+PORT = args.port
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
 
@@ -13,7 +22,7 @@ while True:
     data = input('> ')
     if not data:
         break
-    udpCliSock.sendto(data, ADDR)
+    udpCliSock.sendto(bytes(data,'utf-8'), ADDR)
     data, ADDR = udpCliSock.recvfrom(BUFSIZ)
     if not data:
         break
